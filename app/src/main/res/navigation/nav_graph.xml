@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/movieListFragment">
+
+    <fragment
+        android:id="@+id/movieListFragment"
+        android:name="com.example.movielibrarye193.ui.list.MovieListFragment"
+        android:label="Lista de Películas">
+        <action
+            android:id="@+id/action_list_to_detail"
+            app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_list_to_edit"
+            app:destination="@id/movieEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.movielibrarye193.ui.detail.MovieDetailFragment"
+        android:label="Detalle">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_detail_to_edit"
+            app:destination="@id/movieEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieEditFragment"
+        android:name="com.example.movielibrarye193.ui.edit.MovieEditFragment"
+        android:label="Crear / Editar">
+        <argument
+            android:name="movieId"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+
+</navigation>

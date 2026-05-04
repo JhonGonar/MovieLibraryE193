@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movielibrarye193.databinding.FragmentMovieListBinding
 import com.example.movielibrarye193.db.AppDatabase
@@ -32,7 +33,10 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = MovieAdapter { /* navegar al detalle – Parte 5 */ }
+        adapter = MovieAdapter { movie ->
+            val action = MovieListFragmentDirections.actionListToDetail(movie.id)
+            findNavController().navigate(action)
+        }
         binding.rvMovies.layoutManager = LinearLayoutManager(requireContext())
         binding.rvMovies.adapter = adapter
 
@@ -43,7 +47,8 @@ class MovieListFragment : Fragment() {
         }
 
         binding.fabAdd.setOnClickListener {
-            // navegar a edición – Parte 5
+            val action = MovieListFragmentDirections.actionListToEdit()
+            findNavController().navigate(action)
         }
     }
 
